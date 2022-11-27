@@ -7,8 +7,6 @@ env:
     ssh_pub: id_ed25519.pub
 phases:
   pre_build:
-    runtime-versions:
-      nodejs: latest
     commands:
       - echo Entered the pre-build phase...
       - mkdir -p ~/.ssh
