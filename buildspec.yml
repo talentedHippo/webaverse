@@ -6,6 +6,9 @@ env:
     ssh_key: id_ed25519
     ssh_pub: id_ed25519.pub
 phases:
+  install:
+    runtime-versions:
+      nodejs: latest
   pre_build:
     commands:
       - echo Entered the pre-build phase...
@@ -28,7 +31,7 @@ phases:
       - npm run build
   post_build:
     commands:
-      - echo running on production
+      - echo prod started on  `date`
       - npm run prod
 artifacts:
     files: imagedefinitions.json
