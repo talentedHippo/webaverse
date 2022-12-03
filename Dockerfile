@@ -4,10 +4,8 @@ ENV LAST_UPDATED 20160605T165400
 ENV PM2_PUBLIC_KEY lhnfp4n5qgpi7gq
 ENV PM2_SECRET_KEY=$pm2_secret_key
 ENV HOSTNAME=0
-ENV URL=https://local.webaverse.com
-ENV PORT=3000
 LABEL description="webaverse-app"
-	
+
 # Copy source code
 COPY . /app
 	
@@ -16,7 +14,7 @@ RUN ln -s /usr/local/bin/docker-entrypoint.sh && chmod +x /usr/local/bin/docker-
 
 # Change working directory
 WORKDIR /app
-	
+
 
 # Install dependencies
 RUN apt update -y
@@ -33,12 +31,12 @@ RUN  apt-get install -y apt-transport-https \
 		libnspr4 \
 		libnss3 \
 		libx11-xcb1
-	
+
 
 # Expose API port to the outside
-EXPOSE 443
-EXPOSE 444
-	
+EXPOSE 3000
+EXPOSE 3001
+
 
 # Launch application
 CMD ["docker-entrypoint.sh"]

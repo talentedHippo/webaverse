@@ -12,8 +12,8 @@ const SERVER_NAME = 'local.webaverse.com';
 
 Error.stackTraceLimit = 300;
 const cwd = process.cwd();
-
-const isProduction = process.argv[2] === '-p';
+//
+// const isProduction = process.argv[2] === '-p';
 
 const _isMediaType = p => /\.(?:png|jpe?g|gif|svg|glb|mp3|wav|webm|mp4|mov)$/.test(p);
 
@@ -25,10 +25,10 @@ const _tryReadFile = p => {
     return null;
   }
 };
-const certs = {
-  key: _tryReadFile('./certs/privkey.pem') || _tryReadFile('./certs-local/privkey.pem'),
-  cert: _tryReadFile('./certs/fullchain.pem') || _tryReadFile('./certs-local/fullchain.pem'),
-};
+// const certs = {
+//   key: _tryReadFile('./certs/privkey.pem') || _tryReadFile('./certs-local/privkey.pem'),
+//   cert: _tryReadFile('./certs/fullchain.pem') || _tryReadFile('./certs-local/fullchain.pem'),
+// };
 
 function makeId(length) {
   let result = '';
@@ -111,11 +111,11 @@ function makeId(length) {
     }
   });
 
-  const isHttps = !process.env.HTTP_ONLY && (!!certs.key && !!certs.cert);
-  const port = parseInt(process.env.PORT, 10) || (isProduction ? 443 : 3000);
+  const isHttps = false;
+  const port = parseInt(process.env.PORT, 10) || 3000;
   const wsPort = port + 1;
 
-  const _makeHttpServer = () => isHttps ? https.createServer(certs, app) : http.createServer(app);
+  const _makeHttpServer = () => http.createServer(app);
   const httpServer = _makeHttpServer();
   const viteServer = await vite.createServer({
     server: {
@@ -129,7 +129,7 @@ function makeId(length) {
     }
   });
   app.use(viteServer.middlewares);
-  
+
   await new Promise((accept, reject) => {
     httpServer.listen(port, SERVER_ADDR, () => {
       accept();
@@ -137,19 +137,19 @@ function makeId(length) {
     httpServer.on('error', reject);
   });
   console.log(`  > Local: http${isHttps ? 's' : ''}://${SERVER_NAME}:${port}/`);
-  
+
   const wsServer = (() => {
-    if (isHttps) {
-      return https.createServer(certs);
-    } else {
+    // if (isHttps) {
+    //   return https.createServer(certs);
+    // } else {
       return http.createServer();
-    }
+    //}
   })();
   const initialRoomState = (() => {
     const s = fs.readFileSync('./scenes/gunroom.scn', 'utf8');
     const j = JSON.parse(s);
     const {objects} = j;
-    
+
     const appsMapName = 'apps';
     const result = {
       [appsMapName]: [],

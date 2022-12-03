@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/packages/three" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/packages/three-vrm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/packages/totum" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/packages/wsrtc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/packages/zjs" vcs="Git" />
+  </component>
+</project>

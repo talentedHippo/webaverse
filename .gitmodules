@@ -1,15 +1,15 @@
 [submodule "packages/wsrtc"]
 	path = packages/wsrtc
-	url = https://github.com/webaverse/wsrtc.git
+	url = https://github.com/talentedHippo/wsrtc.git
 [submodule "packages/zjs"]
 	path = packages/zjs
-	url = https://github.com/webaverse/zjs.git
+	url = https://github.com/talentedHippo/zjs.git
 [submodule "packages/totum"]
 	path = packages/totum
-	url = https://github.com/webaverse/totum.git
+	url = https://github.com/talentedHippo/totum.git
 [submodule "packages/three-vrm"]
 	path = packages/three-vrm
-	url = https://github.com/webaverse/three-vrm
+	url = https://github.com/talentedHippo/three-vrm
 [submodule "packages/three"]
 	path = packages/three
-	url = https://github.com/webaverse/three
+	url = https://github.com/talentedHippo/three

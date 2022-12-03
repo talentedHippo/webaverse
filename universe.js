@@ -29,12 +29,11 @@ class Universe extends EventTarget {
     this.sceneLoadedPromise = null;
   }
   getWorldsHost() {
-    return window.location.protocol + '//' + window.location.hostname + ':' +
-      ((window.location.port ? parseInt(window.location.port, 10) : (window.location.protocol === 'https:' ? 443 : 80)) + 1) + '/worlds/';
+    return window.location.protocol + '//' + window.location.hostname + '/worlds/';
   }
   async enterWorld(worldSpec) {
     this.disconnectRoom();
-    
+
     const localPlayer = metaversefile.useLocalPlayer();
     /* localPlayer.teleportTo(new THREE.Vector3(0, 1.5, 0), camera.quaternion, {
       relation: 'float',
@@ -54,7 +53,7 @@ class Universe extends EventTarget {
       if (!room) {
         const state = new Z.Doc();
         this.connectState(state);
-        
+
         let match;
         if (src === undefined) {
           promises.push(metaversefile.createAppAsync({
@@ -80,7 +79,7 @@ class Universe extends EventTarget {
         })();
         promises.push(p);
       }
-      
+
       this.sceneLoadedPromise = Promise.all(promises)
         .then(() => {});
       await this.sceneLoadedPromise;
