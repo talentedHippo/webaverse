@@ -120,12 +120,8 @@ function makeId(length) {
   const viteServer = await vite.createServer({
     server: {
       middlewareMode: 'html',
-      force:true,
-      hmr: {
-        server: httpServer,
-        port,
-        overlay: false,
-      },
+      force: true,
+      hmr: false
     }
   });
   app.use(viteServer.middlewares);
