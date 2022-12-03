@@ -24,6 +24,7 @@ export default defineConfig({
     ],
   },
   server: {
+    hmr: false,
     fs: {
       strict: true,
     },
