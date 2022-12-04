@@ -13,7 +13,7 @@ const SERVER_NAME = 'local.webaverse.com';
 Error.stackTraceLimit = 300;
 const cwd = process.cwd();
 //
-// const isProduction = process.argv[2] === '-p';
+const isProduction = process.argv[2] === '-p';
 
 const _isMediaType = p => /\.(?:png|jpe?g|gif|svg|glb|mp3|wav|webm|mp4|mov)$/.test(p);
 
@@ -121,7 +121,11 @@ function makeId(length) {
     server: {
       middlewareMode: 'html',
       force: true,
-      hmr: false
+      hmr: {
+        server: httpServer,
+        port: isProduction ? 443: 3000,
+        overlay: false,
+      },
     }
   });
   app.use(viteServer.middlewares);
